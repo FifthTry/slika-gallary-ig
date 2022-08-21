@@ -85,21 +85,21 @@ incididunt ut labore et dolore magna aliqua.
 
 --- slika-gallery-block: Lorem ipsum slika 1
 subtitle: Lorem ipsum 
-src: $assets.files.images.image-placeholder.png
+src: $assets.files.images.image-1.jpg
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
 incididunt ut labore et dolore magna aliqua .
 
 --- slika-gallery-block: Lorem ipsum slika 2
 subtitle: Lorem ipsum 
-src: $assets.files.images.image-placeholder.png
+src: $assets.files.images.image-2.jpg
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
 incididunt ut labore et dolore magna aliqua. 
 
 --- slika-gallery-block: Lorem ipsum slika 3
 subtitle: Lorem ipsum 
-src: $assets.files.images.image-placeholder.png
+src: $assets.files.images.image-3.jpg
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
 incididunt ut labore et dolore magna aliqua.
