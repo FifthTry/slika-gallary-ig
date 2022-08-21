@@ -1,1 +1,505 @@
--- ds.page: hello
+-- import: fifthtry.github.io/slika-ig/assets
+-- import: fpm
+-- import: fifthtry.github.io/virgil-font/assets as virgil-assets
+-- import: fifthtry.github.io/typography as tf
+-- import: fifthtry.github.io/package-doc/doc as pd
+-- import: fifthtry.github.io/octicon as octicons
+-- import: fifthtry.github.io/package-doc/code-block as cb
+
+-- fpm.font-display: $virgil-assets.fonts.virgil
+
+-- boolean is-mobile: false
+
+-- is-mobile: true
+if: $ftd.device == mobile
+
+-- integer image-hover: 1
+
+-- boolean first: true
+
+-- boolean middle: false
+
+-- boolean last: false
+
+
+-- ftd.column:
+width: fill
+padding-horizontal: 50
+padding-horizontal if $is-mobile: 20
+background-color: $fpm.color.main.background.base
+
+-- pd.package: `slika-ig`
+name: fifthtry.github.io/slika-ig
+
+This component can be used as a `slika-ig` component on your page.
+
+
+-- pd.component: `slika-ig` 
+name: fifthtry.github.io/slika-ig
+
+How to use?
+
+Add below lines into `FPM.ftd` file:
+
+
+-- cb.code:
+lang: ftd
+
+\-- fpm.dependency: fifthtry.github.io/slika-ig as ig
+
+\-- fpm.auto-import: ig
+
+-- tf.h3: How to use `slika-gallery`:
+
+-- cb.code: Basic usage example
+lang: ftd
+
+\-- ig.slika-gallery: Lorem ipsum dolor sit amet
+
+\--- ig.slika-gallery-: Lorem ipsum 
+subtitle: Lorem ipsum 
+src: $assets.files.images.image-placeholder.png
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua .
+
+\--- ig.slika-gallery-ig-two: Lorem ipsum 
+subtitle: Lorem ipsum 
+src: $assets.files.images.image-placeholder.png
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua. 
+
+\--- ig.slika-gallery-ig-three: Lorem ipsum 
+subtitle: Lorem ipsum 
+src: $assets.files.images.image-placeholder.png
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua.
+
+
+
+
+
+-- slika-gallery: Lorem ipsum dolor sit amet
+
+--- slika-gallery-block: Lorem ipsum slika 1
+subtitle: Lorem ipsum 
+src: $assets.files.images.image-placeholder.png
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua .
+
+--- slika-gallery-block: Lorem ipsum slika 2
+subtitle: Lorem ipsum 
+src: $assets.files.images.image-placeholder.png
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua. 
+
+--- slika-gallery-block: Lorem ipsum slika 3
+subtitle: Lorem ipsum 
+src: $assets.files.images.image-placeholder.png
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua.
+
+
+
+
+
+
+
+
+
+
+
+-- ftd.column slika-gallery:
+integer current: 1	
+caption title:
+width: fill
+background-color: $fpm.color.main.background.base
+padding-vertical: 48
+padding-horizontal: 24
+open: true
+append-at: profile
+
+--- ftd.text: $title
+role: $fpm.type.heading-medium
+style: bold
+align: left
+margin-bottom: $fpm.space.space-6
+
+--- container: ftd.main
+
+--- ftd.row:
+id: profile
+
+--- container: ftd.main
+
+--- ig-nav:
+$current: $current
+$children-count: $CHILDREN-COUNT
+
+
+
+
+
+
+
+
+
+
+
+-- ftd.row ig-nav:
+integer $current:
+integer $children-count:
+spacing: 12
+bottom: 10
+bottom if $is-mobile: 5
+left if not $is-mobile: 498
+left if $is-mobile: 116
+anchor: parent
+z-index: 1000
+id: change-container
+boolean active: false	
+boolean show-left: false	
+boolean show-right: false
+width: fill
+
+--- ftd.row:	
+if: not $is-mobile	
+align: center	
+id: slots
+width: fill	
+
+--- ftd.row:	
+id: left-arrow	
+align: center	
+
+--- ftd.image:	
+if: not $show-left	
+src: $assets.files.images.left.svg	
+$on-click$: decrement $current clamp 1 $children-count	
+width: 24	
+height: 24	
+align: center	
+$on-mouse-enter$: $show-left = true	
+$on-mouse-leave$: $show-left = false
+
+--- container: left-arrow
+
+--- ftd.image:	
+if: $show-left	
+src: $assets.files.images.left-active.svg	
+$on-click$: decrement $current clamp 1 $children-count	
+width: 24	
+height: 24	
+align: center	
+$on-mouse-enter$: $show-left = true	
+$on-mouse-leave$: $show-left = false
+
+--- container: slots	
+
+--- ftd.row:	
+$on-global-key[left]$: decrement $current clamp 1 $children-count	
+
+--- container: slots	
+
+--- show-controls:	
+$total: $children-count	
+$current: $current	
+align: center	
+
+--- container: slots	
+
+--- ftd.row:	
+id: right-arrow	
+align: center	
+
+--- ftd.image:	
+if: not $show-right	
+src: $assets.files.images.right.svg	
+$on-click$: increment $current clamp 1 $children-count	
+width: 24	
+align: center	
+$on-mouse-enter$: $show-right = true	
+$on-mouse-leave$: $show-right = false
+
+--- container: right-arrow	
+
+--- ftd.image:	
+if: $show-right	
+src: $assets.files.images.right-active.svg	
+$on-click$: increment $current clamp 1 $children-count
+width: 24	
+align: center	
+$on-mouse-enter$: $show-right = true	
+$on-mouse-leave$: $show-right = false	
+
+--- container: slots	
+
+--- ftd.row:	
+$on-global-key[right]$: increment $current clamp 1 $children-count	
+
+--- container: ftd.main
+
+--- ftd.row:	
+if: $is-mobile	
+align: center	
+id: slots	
+
+--- ftd.row:	
+id: left-arrow	
+align: center	
+
+--- ftd.image:	
+src: $assets.files.images.left.svg	
+$on-click$: decrement $current clamp 1 $children-count
+width: 24	
+height: 24	
+align: center	
+
+--- show-controls:
+$total: $children-count	
+$current: $current		
+align: center	
+
+--- container: slots
+
+--- ftd.row:	
+id: right-arrow	
+align: center	
+
+--- ftd.image:	
+src: $assets.files.images.right.svg	
+$on-click$: increment $current clamp 1 $children-count	
+width: 24	
+align: center	
+$on-mouse-enter$: $show-right = true	
+$on-mouse-leave$: $show-right = false	
+
+
+
+
+
+
+
+
+
+
+-- ftd.row show-controls:
+integer $total:
+integer $current:
+padding: 11
+border-radius: 10
+spacing: 8
+min-width: 90
+
+--- ftd.integer: $current
+align: center
+width: fill
+text-align: center
+
+--- ftd.text: of 
+align: center
+width: fill
+text-align: center
+
+--- ftd.integer: $total
+align: center
+width: fill
+text-align: center
+
+
+
+\--- ftd.row:
+padding-vertical: $fpm.space.space-1
+padding-horizontal: $fpm.space.space-1
+border-radius: 100
+background-color: $fpm.color.main.text-strong
+margin-top: $fpm.space.space-1
+$on-click$: $last = false
+background-color if $first == true: $fpm.color.main.background.step-2
+$on-click$: $middle = false
+$on-click$: $first = true
+width: fill
+
+\--- container: change-container
+
+\--- ftd.row:
+padding-vertical: $fpm.space.space-1
+padding-horizontal: $fpm.space.space-1
+border-radius: 100
+background-color: $fpm.color.main.text-strong
+margin-top: $fpm.space.space-1
+$on-click$: $last = false
+background-color if $middle == true: $fpm.color.main.background.step-2
+$on-click$: $first = false
+$on-click$: $middle = true
+
+\--- container: change-container
+
+\--- ftd.row:
+padding-vertical: $fpm.space.space-1
+padding-horizontal: $fpm.space.space-1
+border-radius: 100
+background-color: $fpm.color.main.text-strong
+background-color if $last == true: $fpm.color.main.background.step-2
+margin-top: $fpm.space.space-1
+$on-click$: $last = true
+$on-click$: $first = false
+$on-click$: $middle = false
+
+
+
+
+
+
+
+
+
+
+
+-- ftd.row slika-gallery-block:
+if: $PARENT.current == $SIBLING-INDEX
+caption title:
+string subtitle:
+body body:
+ftd.image-src src:
+
+--- slika-gallery-desktop: $title
+if: not $is-mobile
+subtitle: $subtitle
+body: $body
+src: $src
+
+--- container: ftd.main
+
+--- slika-gallery-mobile: $title
+if: $is-mobile
+subtitle: $subtitle
+body: $body
+src: $src
+
+
+
+
+
+
+
+
+
+
+
+-- ftd.row slika-gallery-desktop:
+if: $first
+caption title:
+string subtitle:
+body body:
+ftd.image-src src:
+spacing: 32
+width: fill
+
+--- ftd.column:
+id: switch
+spacing: 12
+width: percent 50
+align: center
+
+--- ftd.text: $title
+role: $fpm.type.label-big
+style: semi-bold
+padding-bottom: 4
+color: $fpm.color.main.text
+border-color: $fpm.color.main.text
+
+--- ftd.row:
+anchor: parent
+width: 32
+border-color: $fpm.color.main.text-strong
+top:  12
+border-bottom: 2
+left: 0
+
+--- container: switch
+
+--- ftd.column:
+width: fill
+align: top
+
+--- ftd.text: $subtitle
+role: $fpm.type.heading-large
+style: semi-bold
+color: $fpm.color.main.text
+
+--- ftd.text:
+text: $body
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+
+--- container: ftd.main
+
+--- ftd.row:
+width: percent 50
+
+--- ftd.image:
+src: $src
+height: fill
+
+
+
+
+
+
+
+
+
+
+-- ftd.column slika-gallery-mobile:
+caption title:
+string subtitle:
+body body:
+ftd.image-src src:
+spacing: 12
+
+--- ftd.image:
+src: $src
+height: fill
+
+--- container: ftd.main
+
+--- ftd.column:
+id: switch
+width: fill
+
+--- ftd.text: $title
+role: $fpm.type.label-big
+style: semi-bold
+padding-bottom: 4
+color: $fpm.color.main.text
+border-color: $fpm.color.main.text
+
+--- ftd.row:
+anchor: parent
+width: 32
+border-color: $fpm.color.main.text-strong
+top:  16
+border-bottom: 2
+padding-bottom: 8
+left: 0
+
+--- container: switch
+
+--- ftd.text: $subtitle
+role: $fpm.type.heading-large
+style: semi-bold
+color: $fpm.color.main.text
+margin-top: 12
+
+--- ftd.text:
+text: $body
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-top: 12
+
