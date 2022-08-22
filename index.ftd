@@ -13,13 +13,7 @@
 -- is-mobile: true
 if: $ftd.device == mobile
 
--- integer image-hover: 1
 
--- boolean first: true
-
--- boolean middle: false
-
--- boolean last: false
 
 
 -- ftd.column:
@@ -394,7 +388,6 @@ src: $src
 
 
 -- ftd.row slika-gallery-desktop:
-if: $first
 caption title:
 string subtitle:
 body body:
